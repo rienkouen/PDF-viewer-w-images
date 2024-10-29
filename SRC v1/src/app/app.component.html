@@ -1,0 +1,37 @@
+<div #container></div>
+
+<div>
+  <input type="file" (change)="loadFile($event)" accept="application/pdf,image/*" multiple>
+</div>
+
+<div>
+  <label>
+    <input type="checkbox" [(ngModel)]="showFirstPage" (change)="onShowFirstPageChange()">
+    Show First Page Square
+  </label>
+  
+  <label *ngIf="fileType === 'pdf' || (fileType === 'image' && numberOfImages > 2)">
+    <input type="checkbox" [(ngModel)]="showMiddlePages" (change)="onShowMiddlePagesChange()">
+    Show Middle Pages Squares
+  </label>
+  
+  <label *ngIf="fileType === 'pdf' || (fileType === 'image' && numberOfImages > 1)">
+    <input type="checkbox" [(ngModel)]="showLastPage" (change)="onShowLastPageChange()">
+    Show Last Page Square
+  </label>
+</div>
+
+<div>
+  <div>First Page Square Position: {{firstPagePosition}}</div>
+  <div *ngIf="fileType === 'pdf' || (fileType === 'image' && numberOfImages > 2)">
+    Middle Pages Squares Position: {{middlePagesPosition}}
+  </div>
+  <div *ngIf="fileType === 'pdf' || (fileType === 'image' && numberOfImages > 1)">
+    Last Page Square Position: {{lastPagePosition}}
+  </div>
+</div>
+
+<div>
+  <div>Debug Info: {{debugInfo}}</div>
+  <div>Error: {{error}}</div>
+</div>
